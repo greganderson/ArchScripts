@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+import commands, os
+
+s, o = commands.getstatusoutput('synclient -l')
+
+target = ''
+for line in o.split('\n'):
+	if 'TouchpadOff' in line:
+		target = line
+		break
+
+if '0' in target:
+	os.system('synclient TouchpadOff=1')
+else:
+	os.system('synclient TouchpadOff=0')
